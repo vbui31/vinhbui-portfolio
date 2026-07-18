@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Download } from "lucide-react";
+import { assetPath } from "@/lib/asset-path";
 import { SectionHeading } from "@/components/common/section-heading";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ export function ResumeSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr,0.9fr]">
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}>
             <iframe
-              src="/resume.pdf"
+              src={assetPath("/resume.pdf")}
               title="Vinh Bui Resume Preview"
               className="h-[480px] w-full rounded-xl border bg-card"
             />
@@ -38,7 +39,7 @@ export function ResumeSection() {
               <p className="text-sm text-muted-foreground">
                 Awards: NSF S-STEM/PRISE Scholar | Shell Oil Company Technical Scholarship
               </p>
-              <a href="/resume.pdf" target="_blank" rel="noreferrer">
+              <a href={assetPath("/resume.pdf")} target="_blank" rel="noreferrer">
                 <Button className="w-full">
                   <Download className="mr-2 h-4 w-4" /> Download Resume
                 </Button>
