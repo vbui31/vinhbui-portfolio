@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { typingItems } from "@/data/portfolio";
+import { assetPath } from "@/lib/asset-path";
 import { MagneticButton } from "@/components/common/magnetic-button";
 import { MoleculeCanvas } from "@/components/visualization/molecule-canvas";
 
@@ -85,7 +86,7 @@ export function HeroSection() {
               >
                 View Projects
               </MagneticButton>
-              <MagneticButton onClick={() => window.open("/resume.pdf", "_blank")}>
+              <MagneticButton onClick={() => window.open(assetPath("/resume.pdf"), "_blank")}>
                 Download Resume
               </MagneticButton>
               <MagneticButton
@@ -104,7 +105,7 @@ export function HeroSection() {
           >
             <div className="relative mx-auto h-72 w-56 overflow-hidden rounded-xl border border-white/20">
               <Image
-                src="/headshot.jpg"
+                src={assetPath("/headshot.jpg")}
                 alt="Professional headshot of Vinh Bui"
                 fill
                 className="object-cover object-[56%_24%]"

@@ -1,3 +1,5 @@
+import { assetPath } from "@/lib/asset-path";
+
 export const typingItems = [
   "Process Engineering",
   "Data Analytics",
@@ -77,7 +79,7 @@ export const projects = [
   {
     title: "CHE 3171 Process Optimization Project",
     category: "Engineering",
-    image: "/company-logos/lsu.png",
+    image: assetPath("/company-logos/lsu.png"),
     overview:
       "Designed and evaluated process optimization pathways for a vinyl chloride monomer (VCM) system under the Westlake LSU Junior Design prompt.",
     problem:
@@ -95,7 +97,7 @@ export const projects = [
       "Delivered a structured optimization recommendation with clearly documented tradeoffs across safety, operability, and expected process performance.",
     learnings:
       "Strong process decisions come from combining fundamentals, economics, and safety-first engineering judgment.",
-    demo: "/projects/3171-design-presentation.pdf"
+    demo: assetPath("/projects/3171-design-presentation.pdf")
   }
 ];
 
@@ -117,7 +119,7 @@ export const timeline: TimelineItem[] = [
     role: "Incoming Process Engineering Co-Op",
     period: "Aug 2026 - Dec 2026",
     location: "Garyville, LA",
-    logo: "/company-logos/marathon.png",
+    logo: assetPath("/company-logos/marathon.png"),
     responsibilities:
       "Preparing to support refinery process execution, troubleshooting, and optimization in a high-reliability manufacturing environment.",
     achievements:
@@ -130,7 +132,7 @@ export const timeline: TimelineItem[] = [
     role: "Test & Development Engineering Intern",
     period: "Jun 2026 - Present",
     location: "Huntsville, AL",
-    logo: "/company-logos/nasa.png",
+    logo: assetPath("/company-logos/nasa.png"),
     responsibilities:
       "Advanced reactivation and safety readiness work for NASA ECLSS Bosch carbon-reduction research test stands.",
     achievements:
@@ -145,7 +147,7 @@ export const timeline: TimelineItem[] = [
     role: "Reservoir Engineering Intern",
     period: "May 2025 - Aug 2025",
     location: "Houston, TX",
-    logo: "/company-logos/chevron.png",
+    logo: assetPath("/company-logos/chevron.png"),
     responsibilities:
       "Evaluated depletion forecasting quality across 150+ shale well pads and built data pipelines for engineering analysis.",
     achievements:
@@ -160,7 +162,7 @@ export const timeline: TimelineItem[] = [
     role: "CHE 2171 Teaching Assistant",
     period: "Aug 2025 - Dec 2025",
     location: "Baton Rouge, LA",
-    logo: "/company-logos/lsu.png",
+    logo: assetPath("/company-logos/lsu.png"),
     responsibilities:
       "Supported laboratory instruction for 80+ chemical engineering students in material/energy balances using Excel and Aspen.",
     achievements:
@@ -175,7 +177,7 @@ export const timeline: TimelineItem[] = [
     role: "Incoming Internal Vice President",
     period: "Jul 2026 - Present",
     location: "Baton Rouge, LA",
-    logo: "/company-logos/sase.jpg",
+    logo: assetPath("/company-logos/sase.jpg"),
     responsibilities:
       "Leading officer coordination, accountability, and organizational continuity planning for the 2026-27 term.",
     achievements:
@@ -190,7 +192,7 @@ export const timeline: TimelineItem[] = [
     role: "Professional Development Chair",
     period: "Apr 2025 - Jul 2026",
     location: "Baton Rouge, LA",
-    logo: "/company-logos/sase.jpg",
+    logo: assetPath("/company-logos/sase.jpg"),
     responsibilities:
       "Built professional development programming and industry relationships for student recruiting readiness.",
     achievements:
@@ -205,7 +207,7 @@ export const timeline: TimelineItem[] = [
     role: "Secretary",
     period: "Mar 2023 - Present",
     location: "Baton Rouge, LA",
-    logo: "/company-logos/southern-lotus.png",
+    logo: assetPath("/company-logos/southern-lotus.png"),
     responsibilities:
       "Coordinated performance logistics, scheduling, and sponsor-facing operations for community events.",
     achievements:
