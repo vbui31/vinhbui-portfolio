@@ -129,13 +129,14 @@ export function HeroSection() {
               </button>
             </div>
 
-            <div className="mt-9 flex items-center gap-4 border-t border-white/10 pt-6">
-              <div className="relative h-12 w-12 overflow-hidden rounded-full border border-cyan/45 bg-white/5">
+            <div className="mt-9 flex items-center gap-5 border-t border-white/10 pt-6">
+              <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-[1.35rem] border-2 border-cyan/65 bg-white/5 shadow-[0_0_32px_rgb(253_208_35/0.18)] sm:h-28 sm:w-28">
                 <Image
                   src={assetPath("/headshot.jpg")}
                   alt="Vinh Bui"
                   fill
                   priority
+                  sizes="(min-width: 640px) 112px, 96px"
                   className="object-cover object-[56%_24%]"
                 />
               </div>
