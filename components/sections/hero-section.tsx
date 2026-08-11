@@ -67,12 +67,17 @@ export function HeroSection() {
           >
             <div className="mb-7 flex items-center gap-3 font-instrument text-[11px] tracking-[0.2em] text-cyan">
               <span className="h-2 w-2 rounded-full bg-cyan shadow-[0_0_18px_#FDD023]" />
-              LSU CHEMICAL ENGINEERING · NASA MSFC
+              LSU · NASA MARSHALL SPACE FLIGHT CENTER
             </div>
             <h1 className="text-balance text-[clamp(3.5rem,8vw,7.5rem)] font-semibold leading-[0.87] tracking-[-0.075em]">
-              Engineering
-              <span className="block text-cyan">systems.</span>
+              Vinh
+              <span className="block text-cyan">Bui.</span>
             </h1>
+            <div className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 font-instrument text-[10px] tracking-[0.17em] text-white/70 sm:text-[11px]">
+              <span className="font-semibold text-white">CHEMICAL ENGINEER</span>
+              <span className="h-px w-7 bg-cyan" aria-hidden="true" />
+              <span>GRADUATING DECEMBER 2027</span>
+            </div>
             <p className="mt-7 max-w-xl text-pretty text-xl leading-8 text-white/72 md:text-2xl md:leading-9">
               I turn complex process, energy, and data problems into decisions people can use.
             </p>
@@ -104,8 +109,8 @@ export function HeroSection() {
                 />
               </div>
               <div>
-                <p className="font-semibold">Vinh Bui</p>
-                <p className="text-sm text-white/55">Chemical engineer in training · Baton Rouge, LA</p>
+                <p className="font-semibold">Louisiana State University</p>
+                <p className="text-sm text-white/55">B.S. Chemical Engineering · December 2027</p>
               </div>
             </div>
           </motion.div>
