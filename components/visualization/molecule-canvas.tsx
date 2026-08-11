@@ -30,14 +30,14 @@ function MoleculeNodes() {
       {points.map((position, index) => (
         <mesh key={index} position={position}>
           <sphereGeometry args={[0.05, 12, 12]} />
-          <meshStandardMaterial color="#06B6D4" emissive="#06B6D4" emissiveIntensity={0.45} />
+          <meshStandardMaterial color="#FDD023" emissive="#FDD023" emissiveIntensity={0.45} />
         </mesh>
       ))}
       {points.slice(0, 18).map((point, index) => (
         <Line
           key={`line-${index}`}
           points={[point, points[(index * 3 + 5) % points.length]]}
-          color="#67e8f9"
+          color="#FDD023"
           opacity={0.2}
           transparent
           lineWidth={1}
@@ -51,7 +51,7 @@ export function MoleculeCanvas() {
   return (
     <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
       <ambientLight intensity={0.35} />
-      <pointLight position={[3, 2, 4]} intensity={1} color="#22d3ee" />
+      <pointLight position={[3, 2, 4]} intensity={1} color="#FDD023" />
       <MoleculeNodes />
     </Canvas>
   );
