@@ -20,9 +20,9 @@ export function SkillsSection() {
     <section id="skills" className="py-20">
       <div className="container">
         <SectionHeading
-          eyebrow="Capabilities"
-          title="Technical Skills"
-          description="Engineering fundamentals, analytical tooling, and leadership execution."
+          eyebrow="Capabilities & direction"
+          title="Engineering depth, analytical tooling, & clear execution"
+          description="LSU chemical engineering student preparing for process engineering, energy systems, and consulting work through safety-first systems thinking, simulation, and data analysis."
         />
         <div className="mb-6 flex flex-wrap justify-center gap-2">
           {categories.map((category) => (

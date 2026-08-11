@@ -31,9 +31,12 @@ export function LeadershipTimelineSection() {
               <button
                 key={`${experience.company}-${experience.role}`}
                 role="tab"
+                id={`experience-tab-${index}`}
                 aria-selected={selected === index}
                 aria-controls="experience-detail"
+                tabIndex={selected === index ? 0 : -1}
                 onClick={() => setSelected(index)}
+                onKeyDown={(event) => { const next = event.key === "Home" ? 0 : event.key === "End" ? experienceTimeline.length - 1 : event.key === "ArrowRight" ? (index + 1) % experienceTimeline.length : event.key === "ArrowLeft" ? (index + experienceTimeline.length - 1) % experienceTimeline.length : index; if (next !== index) { event.preventDefault(); setSelected(next); (event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next])?.focus(); } }}
                 className={`group min-w-[16rem] rounded-2xl border px-5 py-4 text-left transition-all lg:min-w-0 lg:w-full ${
                   selected === index
                     ? "border-cyan/55 bg-cyan text-purple-deep"
@@ -56,7 +59,7 @@ export function LeadershipTimelineSection() {
             ))}
           </div>
 
-          <div id="experience-detail" role="tabpanel" aria-live="polite" className="glass-panel min-h-[34rem] overflow-hidden rounded-[2rem] border border-white/10">
+          <div id="experience-detail" role="tabpanel" aria-labelledby={`experience-tab-${selected}`} aria-live="polite" className="glass-panel min-h-[34rem] overflow-hidden rounded-[2rem] border border-white/10">
             <AnimatePresence mode="wait">
               <motion.article
                 key={`${item.company}-${item.role}`}

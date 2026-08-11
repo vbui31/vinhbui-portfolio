@@ -24,9 +24,8 @@ export function LeadershipSection() {
             return (
               <motion.article
                 key={`${item.company}-${item.role}`}
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
+                initial={false}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.08, duration: 0.35 }}
                 className={`rounded-xl border p-6 transition-colors duration-200 ${expanded ? "border-cyan/70 bg-card" : "border-border bg-background hover:bg-card"}`}
               >
@@ -35,6 +34,7 @@ export function LeadershipSection() {
                   className="w-full text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4 focus-visible:ring-offset-background"
                   onClick={() => setOpen(expanded ? null : index)}
                   aria-expanded={expanded}
+                  aria-controls={`leadership-panel-${index}`}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
@@ -54,7 +54,7 @@ export function LeadershipSection() {
                   </div>
                 </button>
                 {expanded ? (
-                    <motion.div
+                    <motion.div id={`leadership-panel-${index}`}
                       initial={{ opacity: 0, y: -6 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}

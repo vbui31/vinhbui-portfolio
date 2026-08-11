@@ -52,12 +52,16 @@ export function ProjectsSection() {
 
             <div className="p-5 sm:p-8 lg:p-10">
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="tablist" aria-label="Project case study views">
-                {views.map((view) => (
+                {views.map((view, index) => (
                   <button
                     key={view}
                     role="tab"
+                    id={`project-tab-${index}`}
+                    aria-controls="project-tabpanel"
+                    tabIndex={activeView === view ? 0 : -1}
                     aria-selected={activeView === view}
                     onClick={() => setActiveView(view)}
+                    onKeyDown={(event) => { const next = event.key === "Home" ? 0 : event.key === "End" ? views.length - 1 : event.key === "ArrowRight" ? (index + 1) % views.length : event.key === "ArrowLeft" ? (index + views.length - 1) % views.length : index; if (next !== index) { event.preventDefault(); setActiveView(views[next]); (event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next])?.focus(); } }}
                     className={`rounded-full px-4 py-2.5 text-xs font-semibold transition-colors ${
                       activeView === view
                         ? "bg-cyan text-purple-deep"
@@ -69,7 +73,7 @@ export function ProjectsSection() {
                 ))}
               </div>
 
-              <div className="relative mt-8 min-h-[24rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/25">
+              <div id="project-tabpanel" role="tabpanel" aria-labelledby={`project-tab-${views.indexOf(activeView)}`} className="relative mt-8 min-h-[24rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/25">
                 <AnimatePresence mode="wait">
                   {activeView === "Artifact" ? (
                     <motion.div

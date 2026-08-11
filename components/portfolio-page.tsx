@@ -2,9 +2,8 @@
 
 import { MotionConfig } from "framer-motion";
 import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { HeroSection } from "@/components/sections/hero-section";
-import { CurrentFocusSection } from "@/components/sections/current-focus-section";
-import { AboutSection } from "@/components/sections/about-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { LeadershipTimelineSection } from "@/components/sections/leadership-timeline-section";
@@ -24,6 +23,13 @@ const navItems = [
 
 export function PortfolioPage() {
   const [activeSection, setActiveSection] = useState("home");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const close = (event: KeyboardEvent) => event.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -52,7 +58,10 @@ export function PortfolioPage() {
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan text-[10px] font-black text-purple-deep">VB</span>
             <span className="hidden sm:inline">Vinh Bui</span>
           </a>
-          <nav className="flex items-center gap-1" aria-label="Portfolio sections">
+          <button type="button" className="inline-flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10 md:hidden" aria-label="Toggle navigation menu" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
+            {menuOpen ? <X aria-hidden="true" className="h-5 w-5" /> : <Menu aria-hidden="true" className="h-5 w-5" />}
+          </button>
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Portfolio sections">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -69,15 +78,17 @@ export function PortfolioPage() {
             ))}
           </nav>
         </div>
+        {menuOpen ? <nav id="mobile-navigation" aria-label="Portfolio sections" className="mx-auto mt-2 max-w-7xl rounded-2xl border border-white/10 bg-[#09060e]/95 p-2 shadow-[0_12px_45px_rgb(0_0_0/0.3)] backdrop-blur-xl md:hidden">
+          {navItems.map((item) => <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)} aria-current={activeSection === item.id ? "page" : undefined} className="block rounded-xl px-4 py-3 text-sm font-semibold text-white/78 hover:bg-white/10 hover:text-cyan">{item.label}</a>)}
+        </nav> : null}
       </header>
 
-      <main>
+      <a href="#home" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-cyan focus:px-4 focus:py-2 focus:text-purple-deep">Skip to content</a>
+      <main id="main-content">
         <HeroSection />
         <LeadershipTimelineSection />
         <LeadershipSection />
         <ProjectsSection />
-        <CurrentFocusSection />
-        <AboutSection />
         <SkillsSection />
         <AchievementsSection />
         <GithubSection />

@@ -11,9 +11,9 @@ export function AchievementsSection() {
     <section id="achievements" className="py-20">
       <div className="container">
         <SectionHeading
-          eyebrow="Highlights"
-          title="Achievements"
-          description="Resume-backed wins across internships, scholarships, leadership, and operations impact."
+          eyebrow="Selected impact"
+          title="Evidence behind the trajectory"
+          description="Resume-backed milestones across engineering, scholarships, and community leadership."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {achievements.map((item, idx) => (

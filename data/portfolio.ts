@@ -14,15 +14,12 @@ export const focusData = {
     "Process Simulation",
     "Advanced Data Analytics",
     "Process Economics",
-    "Artificial Intelligence (AI)",
-    "Prompt Engineering"
+    "AI-assisted documentation"
   ],
   exploring: [
     "Energy Systems",
     "Process Optimization",
-    "Engineering Consulting",
-    "Artificial Intelligence (AI)",
-    "Prompt Engineering"
+    "Engineering Consulting"
   ],
   seeking: ["Internship Opportunities", "Research Experience", "Professional Growth"]
 };
@@ -175,7 +172,7 @@ export const timeline: TimelineItem[] = [
   {
     company: "Society of Asian Scientists & Engineers (SASE)",
     role: "Incoming Internal Vice President",
-    period: "Jul 2026 - Present",
+    period: "Incoming Internal Vice President · 2026–27",
     location: "Baton Rouge, LA",
     logo: assetPath("/company-logos/sase.jpg"),
     responsibilities:
@@ -227,8 +224,9 @@ export const researchInterests: string[] = [];
 export const achievements = [
   "Incoming Process Engineering Co-Op, Marathon Petroleum (Fall 2026)",
   "NASA Test & Development Engineering Intern (2026)",
-  "Generated ~$25MM potential value impact at Chevron",
-  "Improved engineering data processing time by 20% (Chevron + NASA workflows)",
+  "Work linked to approximately $25MM in potential savings at Chevron",
+  "Reduced Chevron engineering data-processing time by 20%",
+  "Built a NASA record-digitization workflow that cut processing time by 20%",
   "NSF S-STEM/PRISE Scholar and Shell Oil Company Technical Scholarship recipient",
   "Expanded SASE workshop offerings by 30% and beat attendance goals by 40%"
 ];
