@@ -18,8 +18,13 @@ export const metadata: Metadata = {
     title: "Vinh Bui | Chemical Engineering Portfolio",
     description:
       "Future engineer and problem solver building technical depth in process engineering, analytics, and leadership.",
-    type: "website"
+    type: "website",
+    url: "https://vbui31.github.io/vinhbui-portfolio/",
+    images: [{ url: "/headshot.jpg", alt: "Vinh Bui" }]
   },
+  twitter: { card: "summary_large_image", title: "Vinh Bui | Chemical Engineering Portfolio", images: ["/headshot.jpg"] },
+  alternates: { canonical: "https://vbui31.github.io/vinhbui-portfolio/" },
+  icons: { icon: "/M_Hex.png" },
   metadataBase: new URL("https://vbui31.github.io/vinhbui-portfolio/")
 };
 
