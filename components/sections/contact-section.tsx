@@ -14,6 +14,13 @@ export function ContactSection() {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const message = String(formData.get("message") ?? "");
+    const subject = encodeURIComponent(`Portfolio conversation with ${name}`);
+    const body = encodeURIComponent(`${message}\n\nFrom: ${name} (${email})`);
+    window.location.href = `mailto:vinh.bui1@outlook.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 2500);
   };
@@ -30,15 +37,15 @@ export function ContactSection() {
           <Card>
             <CardContent className="p-6">
               <form className="space-y-3" onSubmit={onSubmit}>
-                <Input required placeholder="Your name" />
-                <Input required type="email" placeholder="Your email" />
-                <Textarea required placeholder="Your message" />
+                <Input required name="name" autoComplete="name" placeholder="Your name" />
+                <Input required name="email" autoComplete="email" type="email" placeholder="Your email" />
+                <Textarea required name="message" placeholder="What would you like to discuss?" />
                 <Button className="w-full" type="submit">
                   Send Message
                 </Button>
                 {submitted ? (
                   <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-cyan">
-                    Message sent successfully.
+                    Email draft opened in your mail app.
                   </motion.p>
                 ) : null}
               </form>

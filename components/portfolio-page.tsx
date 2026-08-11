@@ -1,6 +1,7 @@
 "use client";
 
-import { ThemeToggle } from "@/components/common/theme-toggle";
+import { MotionConfig } from "framer-motion";
+import { useEffect, useState } from "react";
 import { HeroSection } from "@/components/sections/hero-section";
 import { CurrentFocusSection } from "@/components/sections/current-focus-section";
 import { AboutSection } from "@/components/sections/about-section";
@@ -13,53 +14,80 @@ import { ResumeSection } from "@/components/sections/resume-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 const navItems = [
-  { label: "Experience", href: "#leadership" },
-  { label: "Achievements", href: "#achievements" },
-  { label: "Focus", href: "#focus" },
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" }
+  { label: "Experience", href: "#leadership", id: "leadership" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Capabilities", href: "#skills", id: "skills" },
+  { label: "Contact", href: "#contact", id: "contact" }
 ];
 
 export function PortfolioPage() {
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target.id) setActiveSection(visible.target.id);
+      },
+      { rootMargin: "-35% 0px -55%", threshold: [0, 0.25, 0.6] }
+    );
+
+    ["home", ...navItems.map((item) => item.id)].forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <>
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-border/70 bg-background/95">
-        <div className="container flex h-14 items-center justify-between">
-          <a href="#home" className="text-sm font-semibold tracking-tight text-foreground">
-            vinhbui<span className="text-cyan">.</span>
+    <MotionConfig reducedMotion="user">
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5">
+        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between rounded-full border border-white/10 bg-[#09060e]/80 px-4 shadow-[0_12px_45px_rgb(0_0_0/0.3)] backdrop-blur-xl sm:px-6">
+          <a href="#home" className="flex items-center gap-2 text-sm font-bold tracking-tight text-white">
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-cyan text-[10px] font-black text-purple-deep">VB</span>
+            <span className="hidden sm:inline">Vinh Bui</span>
           </a>
-          <nav className="hidden items-center gap-5 md:flex">
+          <nav className="flex items-center gap-1" aria-label="Portfolio sections">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-xs text-muted-foreground transition-colors duration-200 hover:text-foreground"
+                aria-current={activeSection === item.id ? "page" : undefined}
+                className={`rounded-full px-3 py-2 text-[11px] font-semibold transition-colors sm:px-4 sm:text-xs ${
+                  activeSection === item.id
+                    ? "bg-white/10 text-cyan"
+                    : "text-white/48 hover:bg-white/5 hover:text-white"
+                }`}
               >
                 {item.label}
               </a>
             ))}
           </nav>
-          <ThemeToggle />
         </div>
       </header>
+
       <main>
         <HeroSection />
         <LeadershipTimelineSection />
-        <AchievementsSection />
+        <ProjectsSection />
         <CurrentFocusSection />
         <AboutSection />
         <SkillsSection />
-        <ProjectsSection />
+        <AchievementsSection />
         <GithubSection />
         <ResumeSection />
         <ContactSection />
       </main>
-      <footer className="border-t py-8">
-        <div className="container text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Vinh Bui · Future Engineer | Problem Solver | Leader
+
+      <footer className="border-t border-white/8 bg-[#09060e] py-10">
+        <div className="container flex flex-col items-center justify-between gap-3 text-sm text-white/45 sm:flex-row">
+          <p>© {new Date().getFullYear()} Vinh Bui</p>
+          <p className="font-instrument text-[9px] tracking-[0.16em]">ENGINEER THE SYSTEM · COMMUNICATE THE DECISION</p>
         </div>
       </footer>
-    </>
+    </MotionConfig>
   );
 }

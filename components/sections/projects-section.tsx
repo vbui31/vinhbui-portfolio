@@ -1,129 +1,126 @@
 "use client";
 
-import Image from "next/image";
-import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRight, FileText } from "lucide-react";
+import { useState } from "react";
 import { projects } from "@/data/portfolio";
 import { SectionHeading } from "@/components/common/section-heading";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
+const views = ["Challenge", "Approach", "Outcome", "Artifact"] as const;
+type View = (typeof views)[number];
 
 export function ProjectsSection() {
-  const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [activeView, setActiveView] = useState<View>("Challenge");
+  const project = projects[0];
 
-  const categories = ["All", ...Array.from(new Set(projects.map((project) => project.category)))];
-
-  const filteredProjects = useMemo(() => {
-    return projects.filter((project) => {
-      const categoryMatch = activeCategory === "All" || project.category === activeCategory;
-      const queryMatch = `${project.title} ${project.overview} ${project.tools.join(" ")}`
-        .toLowerCase()
-        .includes(query.toLowerCase());
-      return categoryMatch && queryMatch;
-    });
-  }, [activeCategory, query]);
+  const content: Record<Exclude<View, "Artifact">, { label: string; text: string }> = {
+    Challenge: { label: "PROBLEM DEFINITION", text: project.problem },
+    Approach: { label: "ENGINEERING METHOD", text: project.approach },
+    Outcome: { label: "DECISION + LEARNING", text: `${project.results} ${project.learnings}` }
+  };
 
   return (
-    <section id="projects" className="py-20">
-      <div className="container">
+    <section id="projects" className="relative overflow-hidden py-24 md:py-32">
+      <div className="pointer-events-none absolute -left-40 top-32 h-96 w-96 rounded-full bg-purple/20 blur-[120px]" />
+      <div className="container relative">
         <SectionHeading
-          eyebrow="Portfolio centerpiece"
-          title="Engineering Projects"
-          description="Case-study-style projects focused on problem definition, methodology, and measurable value."
+          eyebrow="Selected work"
+          title="A project should reveal how an engineer thinks."
+          description="Move through the case study from problem framing to recommendation, then open the underlying design artifact."
         />
-        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-          <div className="relative w-full max-w-md">
-            <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              className="pl-9"
-              placeholder="Search projects..."
-              aria-label="Search projects"
-            />
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {categories.map((category) => (
-              <button key={category} onClick={() => setActiveCategory(category)}>
-                <Badge variant={activeCategory === category ? "default" : "secondary"}>
-                  {category}
-                </Badge>
-              </button>
-            ))}
-          </div>
-        </div>
-        <div className="grid gap-6">
-          {filteredProjects.map((project, idx) => {
-            const open = expanded === project.title;
-            return (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.08 }}
-              >
-                <Card className="overflow-hidden">
-                  <div className="grid gap-0 lg:grid-cols-[0.35fr,0.65fr]">
-                    <div className="relative min-h-56">
-                      <Image src={project.image} alt={project.title} fill className="object-cover" />
-                    </div>
-                    <CardContent className="space-y-3 p-6">
-                      <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-xl font-semibold">{project.title}</h3>
-                        <Badge>{project.category}</Badge>
+
+        <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0d0814]">
+          <div className="grid lg:grid-cols-[0.38fr,0.62fr]">
+            <div className="border-b border-white/10 bg-purple-deep p-7 lg:border-b-0 lg:border-r lg:p-10">
+              <p className="font-instrument text-[10px] tracking-[0.18em] text-cyan">CHE 3171 · PROCESS DESIGN</p>
+              <h3 className="mt-5 text-balance text-3xl font-semibold leading-tight tracking-[-0.05em] sm:text-4xl">
+                {project.title}
+              </h3>
+              <p className="mt-5 text-pretty leading-7 text-white/62">{project.overview}</p>
+
+              <div className="mt-9 border-t border-white/10 pt-6">
+                <p className="font-instrument text-[9px] tracking-[0.16em] text-white/35">TOOLS IN THE LOOP</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tools.map((tool) => (
+                    <span key={tool} className="rounded-full border border-cyan/25 px-3 py-1.5 text-xs text-cyan/85">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="p-5 sm:p-8 lg:p-10">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="tablist" aria-label="Project case study views">
+                {views.map((view) => (
+                  <button
+                    key={view}
+                    role="tab"
+                    aria-selected={activeView === view}
+                    onClick={() => setActiveView(view)}
+                    className={`rounded-full px-4 py-2.5 text-xs font-semibold transition-colors ${
+                      activeView === view
+                        ? "bg-cyan text-purple-deep"
+                        : "border border-white/10 text-white/50 hover:border-white/25 hover:text-white"
+                    }`}
+                  >
+                    {view}
+                  </button>
+                ))}
+              </div>
+
+              <div className="relative mt-8 min-h-[24rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/25">
+                <AnimatePresence mode="wait">
+                  {activeView === "Artifact" ? (
+                    <motion.div
+                      key="artifact"
+                      initial={{ opacity: 0, scale: 0.98 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.98 }}
+                      className="flex min-h-[24rem] flex-col items-center justify-center p-8 text-center"
+                    >
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full border border-cyan/30 bg-cyan/10">
+                        <FileText className="h-8 w-8 text-cyan" />
                       </div>
-                      <p className="text-sm text-muted-foreground">{project.overview}</p>
-                      <p className="text-sm">
-                        <span className="font-semibold">Problem:</span> {project.problem}
+                      <h4 className="mt-6 text-2xl font-semibold tracking-[-0.035em]">Open the engineering artifact</h4>
+                      <p className="mt-3 max-w-md text-sm leading-6 text-white/55">
+                        Review the design presentation for the assumptions, process structure, safety considerations, and recommendation.
                       </p>
-                      {open ? (
-                        <>
-                          <p className="text-sm">
-                            <span className="font-semibold">Approach:</span> {project.approach}
-                          </p>
-                          <p className="text-sm">
-                            <span className="font-semibold">Tools:</span> {project.tools.join(", ")}
-                          </p>
-                          <p className="text-sm">
-                            <span className="font-semibold">Results:</span> {project.results}
-                          </p>
-                          <p className="text-sm">
-                            <span className="font-semibold">Key Learnings:</span> {project.learnings}
-                          </p>
-                          <div className="overflow-hidden rounded-lg border">
-                            <iframe
-                              src={project.demo}
-                              title={`${project.title} poster`}
-                              className="h-[360px] w-full bg-card"
-                            />
-                          </div>
-                          <div className="flex flex-wrap gap-3 pt-2">
-                            <a href={project.demo} target="_blank" rel="noreferrer">
-                              <Button>3171 Design Presentation (PDF)</Button>
-                            </a>
-                          </div>
-                        </>
-                      ) : null}
-                      <Button
-                        variant="ghost"
-                        onClick={() => setExpanded(open ? null : project.title)}
-                        className="px-0 text-cyan"
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-7 inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-3 text-sm font-bold text-purple-deep"
                       >
-                        {open ? "Collapse case study" : "Expand case study"}
-                      </Button>
-                    </CardContent>
-                  </div>
-                </Card>
-              </motion.div>
-            );
-          })}
-        </div>
+                        View design presentation <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key={activeView}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      transition={{ duration: 0.28 }}
+                      className="flex min-h-[24rem] flex-col justify-between p-7 sm:p-10"
+                    >
+                      <div>
+                        <p className="font-instrument text-[10px] tracking-[0.2em] text-cyan">{content[activeView].label}</p>
+                        <p className="mt-7 max-w-2xl text-pretty text-xl leading-8 text-white/82 sm:text-2xl sm:leading-9">
+                          {content[activeView].text}
+                        </p>
+                      </div>
+                      <div className="mt-9 flex items-center gap-3 font-instrument text-[9px] tracking-[0.16em] text-white/30">
+                        <span className="h-px flex-1 bg-gradient-to-r from-cyan/60 to-transparent" />
+                        ITERATE WITH EVIDENCE
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
   );

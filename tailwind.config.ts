@@ -30,11 +30,14 @@ const config: Config = {
         "muted-foreground": "hsl(var(--muted-foreground))",
         accent: "hsl(var(--accent))",
         "accent-foreground": "hsl(var(--accent-foreground))",
-        navy: "#010102",
-        cyan: "#5E6AD2"
+        navy: "#09060E",
+        cyan: "#FDD023",
+        purple: "#461D7C",
+        "purple-deep": "#210B3D",
+        ivory: "#F7F5F0"
       },
       backgroundImage: {
-        "hero-gradient": "linear-gradient(180deg, #010102 0%, #08090b 100%)"
+        "hero-gradient": "linear-gradient(155deg, #09060E 0%, #160A24 52%, #210B3D 100%)"
       },
       keyframes: {
         float: {
