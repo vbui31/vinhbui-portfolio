@@ -4,19 +4,19 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { timeline } from "@/data/portfolio";
+import { experienceTimeline } from "@/data/portfolio";
 import { SectionHeading } from "@/components/common/section-heading";
 
 export function LeadershipTimelineSection() {
   const [selected, setSelected] = useState(0);
-  const item = timeline[selected];
+  const item = experienceTimeline[selected];
 
   return (
-    <section id="leadership" className="relative overflow-hidden border-y border-white/8 bg-[#0d0814] py-24 md:py-32">
+    <section id="experience" className="relative overflow-hidden border-y border-white/8 bg-[#0d0814] py-24 md:py-32">
       <div className="gold-noise pointer-events-none absolute right-0 top-0 h-64 w-1/3 opacity-[0.07]" />
       <div className="container relative">
         <SectionHeading
-          eyebrow="Experience console"
+          eyebrow="Professional experience"
           title="Different systems. One engineering method."
           description="Select a role to see the problem, contribution, impact, and growth behind the title."
         />
@@ -27,7 +27,7 @@ export function LeadershipTimelineSection() {
             role="tablist"
             aria-label="Professional experiences"
           >
-            {timeline.map((experience, index) => (
+            {experienceTimeline.map((experience, index) => (
               <button
                 key={`${experience.company}-${experience.role}`}
                 role="tab"

@@ -8,13 +8,15 @@ import { AboutSection } from "@/components/sections/about-section";
 import { SkillsSection } from "@/components/sections/skills-section";
 import { ProjectsSection } from "@/components/sections/projects-section";
 import { LeadershipTimelineSection } from "@/components/sections/leadership-timeline-section";
+import { LeadershipSection } from "@/components/sections/leadership-section";
 import { GithubSection } from "@/components/sections/github-section";
 import { AchievementsSection } from "@/components/sections/achievements-section";
 import { ResumeSection } from "@/components/sections/resume-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
 const navItems = [
-  { label: "Experience", href: "#leadership", id: "leadership" },
+  { label: "Experience", href: "#experience", id: "experience" },
+  { label: "Leadership", href: "#leadership", id: "leadership" },
   { label: "Projects", href: "#projects", id: "projects" },
   { label: "Capabilities", href: "#skills", id: "skills" },
   { label: "Contact", href: "#contact", id: "contact" }
@@ -72,6 +74,7 @@ export function PortfolioPage() {
       <main>
         <HeroSection />
         <LeadershipTimelineSection />
+        <LeadershipSection />
         <ProjectsSection />
         <CurrentFocusSection />
         <AboutSection />

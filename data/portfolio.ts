@@ -219,6 +219,9 @@ export const timeline: TimelineItem[] = [
   }
 ];
 
+export const experienceTimeline = timeline.slice(0, 4);
+export const leadershipTimeline = timeline.slice(4);
+
 export const researchInterests: string[] = [];
 
 export const achievements = [
