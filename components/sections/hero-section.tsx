@@ -50,7 +50,7 @@ export function HeroSection() {
         {Array.from({ length: 26 }).map((_, idx) => (
           <motion.span
             key={idx}
-            className="absolute h-1.5 w-1.5 rounded-full bg-cyan/60"
+            className="absolute h-1.5 w-1.5 rounded-full bg-[#FDD023]/70"
             initial={{
               x: `${Math.random() * 100}%`,
               y: `${Math.random() * 100}%`
