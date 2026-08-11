@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownRight, FileText } from "lucide-react";
 import { useState } from "react";
 import { assetPath } from "@/lib/asset-path";
-import { MoleculeCanvas } from "@/components/visualization/molecule-canvas";
 
 const stages = [
   {
@@ -42,6 +41,40 @@ const stages = [
   }
 ];
 
+function StaticProcessBackdrop() {
+  return (
+    <svg
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 h-full w-full text-cyan"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+    >
+      <g fill="none" stroke="currentColor" strokeWidth="1.2" opacity="0.12">
+        <path d="M-40 610H190L285 515H470L565 610H780L895 495H1110L1215 600H1480" />
+        <path d="M90 250H300L385 335H600L720 215H930L1035 320H1270L1360 230" />
+        <path d="M285 515V335M565 610V760M895 495V320M1215 600V770" />
+        <path d="M470 515L600 335M780 610L930 320M1110 495L1270 320" strokeDasharray="6 12" />
+      </g>
+      <g fill="currentColor" opacity="0.22">
+        <circle cx="190" cy="610" r="7" />
+        <circle cx="285" cy="515" r="11" />
+        <circle cx="385" cy="335" r="7" />
+        <circle cx="565" cy="610" r="13" />
+        <circle cx="720" cy="215" r="8" />
+        <circle cx="895" cy="495" r="11" />
+        <circle cx="1035" cy="320" r="7" />
+        <circle cx="1215" cy="600" r="13" />
+        <circle cx="1360" cy="230" r="8" />
+      </g>
+      <g fill="none" stroke="currentColor" opacity="0.16">
+        <circle cx="285" cy="515" r="24" />
+        <circle cx="895" cy="495" r="24" />
+        <circle cx="1215" cy="600" r="28" />
+      </g>
+    </svg>
+  );
+}
+
 export function HeroSection() {
   const [activeStage, setActiveStage] = useState(0);
   const stage = stages[activeStage];
@@ -52,9 +85,7 @@ export function HeroSection() {
       className="relative isolate min-h-screen overflow-hidden bg-hero-gradient px-4 pb-14 pt-28 text-white"
     >
       <div className="lab-grid pointer-events-none absolute inset-0 opacity-55" />
-      <div className="pointer-events-none absolute inset-0 opacity-20">
-        <MoleculeCanvas />
-      </div>
+      <StaticProcessBackdrop />
       <div className="pointer-events-none absolute -right-32 top-24 h-[34rem] w-[34rem] rounded-full bg-purple/30 blur-[120px]" />
 
       <div className="container relative z-10 flex min-h-[calc(100vh-7rem)] flex-col justify-between">
