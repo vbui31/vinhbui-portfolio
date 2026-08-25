@@ -25,12 +25,12 @@ export const focusData = {
 };
 
 export const dashboardKpis = [
-  { label: "Projects Completed", value: 1 },
+  { label: "Projects Completed", value: 3 },
   { label: "Leadership Roles", value: 2 },
   { label: "Organizations", value: 3 },
   { label: "Technical Skills", value: 14 },
   { label: "Honors & Scholarships", value: 7 },
-  { label: "GitHub Repositories", value: 1 }
+  { label: "GitHub Repositories", value: 2 }
 ];
 
 export const skills = [
@@ -74,8 +74,10 @@ export const skills = [
 
 export const projects = [
   {
+    id: "che-3171",
     title: "CHE 3171 Process Optimization Project",
     category: "Engineering",
+    eyebrow: "CHE 3171 · PROCESS DESIGN",
     image: assetPath("/company-logos/lsu.png"),
     overview:
       "Designed and evaluated process optimization pathways for a vinyl chloride monomer (VCM) system under the Westlake LSU Junior Design prompt.",
@@ -94,7 +96,70 @@ export const projects = [
       "Delivered a structured optimization recommendation with clearly documented tradeoffs across safety, operability, and expected process performance.",
     learnings:
       "Strong process decisions come from combining fundamentals, economics, and safety-first engineering judgment.",
-    demo: assetPath("/projects/3171-design-presentation.pdf")
+    artifactDescription:
+      "Review the design presentation for the assumptions, process structure, safety considerations, and recommendation.",
+    links: [
+      { label: "View design presentation", href: assetPath("/projects/3171-design-presentation.pdf") }
+    ]
+  },
+  {
+    id: "nova",
+    title: "NOVA Document Intelligence Pipeline",
+    category: "NASA Internship Project",
+    eyebrow: "NASA · DOCUMENT INTELLIGENCE",
+    image: assetPath("/company-logos/nasa.png"),
+    overview:
+      "Built during my NASA internship, NOVA turns PDF records into traceable, review-ready information without treating an AI answer as ground truth.",
+    problem:
+      "Engineering records arrived as PDFs with inconsistent names, mixed extraction quality, and details that had to remain connected to their source pages. A useful workflow needed to accelerate digitization without silently overwriting originals or hiding uncertainty.",
+    approach:
+      "Designed a modular Python CLI that extracts page-level evidence with pypdf, optionally adds Tesseract OCR or NVIDIA NeMo Retriever for complex layouts, proposes supported filenames, and routes low-confidence documents to human review. Stable schemas, content hashes, reason codes, tests, CI, and copy-by-default behavior make every decision auditable and handoff-ready.",
+    tools: [
+      "Python",
+      "pypdf",
+      "Tesseract OCR",
+      "NVIDIA NeMo Retriever",
+      "Pytest",
+      "Docker"
+    ],
+    results:
+      "Created an AI-enabled record digitization workflow that cut processing time by 20% while preserving page provenance, confidence, and a review path for uncertain documents.",
+    learnings:
+      "The strongest automation is not the most autonomous—it makes uncertainty visible, keeps originals safe, and gives the next engineer enough evidence to trust or challenge each decision.",
+    artifactDescription:
+      "Explore the public repository for the architecture, CLI workflow, extraction schema, safety defaults, evaluation harness, and handoff documentation.",
+    links: [{ label: "Explore NOVA on GitHub", href: "https://github.com/vbui31/NOVA" }]
+  },
+  {
+    id: "portfolio",
+    title: "Vinh Bui Engineering Portfolio",
+    category: "Web Engineering",
+    eyebrow: "NEXT.JS · TECHNICAL STORYTELLING",
+    image: assetPath("/M_Hex.png"),
+    overview:
+      "Designed and built this portfolio as a recruiter-facing engineering narrative: one place to connect technical work, measurable impact, leadership, and the reasoning behind each project.",
+    problem:
+      "A résumé compresses projects into outcomes, but it rarely shows how decisions were framed, what evidence shaped the work, or how chemical engineering and software skills reinforce one another.",
+    approach:
+      "Built a statically exported Next.js application with TypeScript, a centralized portfolio data model, reusable section components, and deliberate motion. The interface uses semantic controls, keyboard-operable case studies, visible focus states, and reduced-motion support while retaining an LSU-inspired visual system.",
+    tools: [
+      "Next.js",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "GitHub Pages"
+    ],
+    results:
+      "Delivered a responsive, maintainable portfolio that turns project artifacts and quantified experience into an explorable story, with static deployment that is fast, portable, and inexpensive to operate.",
+    learnings:
+      "Technical storytelling is an engineering problem: structure the evidence, reduce friction, and design every interaction around the question a visitor needs answered next.",
+    artifactDescription:
+      "Inspect the source code and component architecture, or open the deployed site to experience the full portfolio.",
+    links: [
+      { label: "Explore the source on GitHub", href: "https://github.com/vbui31/vinhbui-portfolio" },
+      { label: "Open the live portfolio", href: "https://vbui31.github.io/vinhbui-portfolio/" }
+    ]
   }
 ];
 
