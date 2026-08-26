@@ -109,10 +109,6 @@ export function HeroSection() {
               <span className="h-px w-7 bg-cyan" aria-hidden="true" />
               <span>GRADUATING DECEMBER 2027</span>
             </div>
-            <p className="mt-7 max-w-xl text-pretty text-xl leading-8 text-white/72 md:text-2xl md:leading-9">
-              I turn complex process, energy, and data problems into decisions people can use.
-            </p>
-
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <button
                 onClick={() => document.getElementById("projects")?.scrollIntoView()}

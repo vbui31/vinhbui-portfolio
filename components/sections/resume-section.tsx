@@ -34,7 +34,7 @@ export function ResumeSection() {
                 B.S. Chemical Engineering + Minor in Business Administration | GPA: 3.50
               </p>
               <p className="text-sm text-muted-foreground">
-                Experience: Incoming Marathon Process Engineering Co-Op | NASA Test & Development Engineering Intern
+                Experience: Marathon Process Controls Engineering Intern | NASA Test & Development Engineering Intern
               </p>
               <p className="text-sm text-muted-foreground">
                 Awards: NSF S-STEM/PRISE Scholar | Shell Oil Company Technical Scholarship

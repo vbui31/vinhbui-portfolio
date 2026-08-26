@@ -178,16 +178,16 @@ export interface TimelineItem {
 export const timeline: TimelineItem[] = [
   {
     company: "Marathon Petroleum Corporation",
-    role: "Incoming Process Engineering Co-Op",
+    role: "Process Controls Engineering Intern",
     period: "Aug 2026 - Dec 2026",
     location: "Garyville, LA",
     logo: assetPath("/company-logos/marathon.png"),
     responsibilities:
-      "Preparing to support refinery process execution, troubleshooting, and optimization in a high-reliability manufacturing environment.",
+      "Preparing to support refinery process controls, troubleshooting, and optimization in a high-reliability manufacturing environment.",
     achievements:
-      "Selected for a competitive process engineering co-op role focused on operational performance and safety-aligned process improvement.",
-    impact: "Positions technical training for direct process engineering application in a high-reliability operating context.",
-    growth: "Transitioning from internship-driven analysis to hands-on process engineering ownership."
+      "Selected for a process controls engineering internship focused on operational performance and safety-aligned process improvement.",
+    impact: "Positions technical training for direct process controls application in a high-reliability operating context.",
+    growth: "Transitioning from internship-driven analysis to hands-on process controls engineering ownership."
   },
   {
     company: "National Aeronautics & Space Administration (NASA)",
@@ -236,14 +236,14 @@ export const timeline: TimelineItem[] = [
   },
   {
     company: "Society of Asian Scientists & Engineers (SASE)",
-    role: "Incoming Internal Vice President",
-    period: "Incoming Internal Vice President · 2026–27",
+    role: "Internal Vice President",
+    period: "2026–27",
     location: "Baton Rouge, LA",
     logo: assetPath("/company-logos/sase.jpg"),
     responsibilities:
       "Leading officer coordination, accountability, and organizational continuity planning for the 2026-27 term.",
     achievements:
-      "Selected as incoming executive officer based on prior chapter leadership impact.",
+      "Selected as an executive officer based on prior chapter leadership impact.",
     impact:
       "Strengthened long-term chapter operating structure and execution consistency.",
     growth:
@@ -287,7 +287,7 @@ export const leadershipTimeline = timeline.slice(4);
 export const researchInterests: string[] = [];
 
 export const achievements = [
-  "Incoming Process Engineering Co-Op, Marathon Petroleum (Fall 2026)",
+  "Process Controls Engineering Intern, Marathon Petroleum (Fall 2026)",
   "NASA Test & Development Engineering Intern (2026)",
   "Work linked to approximately $25MM in potential savings at Chevron",
   "Reduced Chevron engineering data-processing time by 20%",
